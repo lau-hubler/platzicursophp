@@ -1,19 +1,34 @@
 <?php
-$name = 'Hector Benitez';
-$jobs = [
-   [
-      'title' => 'PHP Developer',
-      'description' => 'This is an awesome job!!',
-   ],
-   [
-      'title' => 'Python Dev',
-   ],
-   [
-      'title' => 'Devops',
-   ]
- 
-];
 
+include ('jobs.php');
+
+$name = 'Hector Benitez';
+$i = 0;
+
+function getDuration($months) {
+   $years = floor($months/12);
+   $extraMonths = $months % 12;
+   $jobDuration = ($years == 0) ?: ($years == 1) ? ($years. " year "): ($years. " years ");
+   $jobDuration .= ($extraMonths == 0) ? ".": ($extraMonths == 1) ? ("and ".$extraMonths. " month "): ("and ".$extraMonths. " months ");
+   return $jobDuration;
+}
+
+function printJob($job) {
+   if ($job['visible'] == false){
+      return;
+   }
+   
+   echo '<li class="work-position">';
+   echo '<h5>'.$job['title'].'</h5>';
+   echo '<p>'.$job['description'].'</p>';
+   echo '<p>'.getDuration($job['months']).'</p>';
+   echo '<strong> Achievements: </strong>';
+   echo '<ul>';
+   echo '<li>Lorem ipsum dolor sit amet, 79% consectetuer adipiscing elit.</li>';
+   echo '<li>Lorem ipsum dolor sit amet, 79% consectetuer adipiscing elit.</li>';
+   echo '<li>Lorem ipsum dolor sit amet, 79% consectetuer adipiscing elit.</li>';
+   echo '</ul>';
+}
 
 ?>
 
@@ -64,37 +79,7 @@ $jobs = [
         <div>
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
-            <li class="work-position">
-              <h5><?php echo $jobs[0]['title']; ?></h5>
-              <p><?php echo $jobs[0]['description']; ?></p>
-              <strong>Achievements:</strong>
-              <ul>
-                <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-              </ul>
-            </li>
-            <li class="work-position">
-               <h5><?php echo $jobs[1]['title']; ?></h5>
-               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.</p>
-                <strong>Achievements:</strong>
-                <ul>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                </ul>
-              </li>
-              <li class="work-position">
-                 <h5><?php echo $jobs[2]['title']; ?></h5>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.</p>
-                  <strong>Achievements:</strong>
-                  <ul>
-                    <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                    <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                    <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                  </ul>
-                </li>
+             <?php printJob($job[$i]); ?>
           </ul>
         </div>
         <div>
