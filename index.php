@@ -14,14 +14,14 @@ function getDuration($months) {
 }
 
 function printJob($job) {
-   if ($job['visible'] == false){
+   if ($job->visible == false){
       return;
    }
    
    echo '<li class="work-position">';
-   echo '<h5>'.$job['title'].'</h5>';
-   echo '<p>'.$job['description'].'</p>';
-   echo '<p>'.getDuration($job['months']).'</p>';
+   echo '<h5>'.$job->title.'</h5>';
+   echo '<p>'.$job->description.'</p>';
+   echo '<p>'.getDuration($job->months).'</p>';
    echo '<strong> Achievements: </strong>';
    echo '<ul>';
    echo '<li>Lorem ipsum dolor sit amet, 79% consectetuer adipiscing elit.</li>';
@@ -79,7 +79,11 @@ function printJob($job) {
         <div>
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
-             <?php printJob($job[$i]); ?>
+             <?php
+                foreach ($job as $i){
+                   printJob($i);
+                }
+             ?>
           </ul>
         </div>
         <div>
