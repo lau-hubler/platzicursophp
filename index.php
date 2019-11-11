@@ -80,8 +80,8 @@ function printJob($job) {
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
              <?php
-                foreach ($job as $i){
-                   printJob($i);
+                for ($i=0; $i < count($jobs); $i++){
+                   printElement($jobs[$i]);
                 }
              ?>
           </ul>
